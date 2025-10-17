@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <button id='product' onClick="displayProducts()">View Products</button>
+    <button id='product' onClick="displayProducts()">View Products</button>  <a href="vieworder.html">View Orders</a>
 <br><br>
     Oil <input id="1" type="number" placeholder="Quantity"> <br><br>
     Chocolate <input id="2" type="number" placeholder="Quantity"><br><br> 
@@ -21,6 +21,15 @@
     Your Total Amount To be Pay is <input type="text" id="result" readonly>
 <br / ><br/>
     Show my Cart <button id="cart" onclick="showitems()">Show</button>
+
+<!--Comfirm order-->
+<button id="corder" onClick="placeOrder()" name="confirm">Place Order</button>
+
+<!--Showing Order History-->
+<button id="showorder" name="showingorder">View Order History</button>
+
     <script src="SuperMarket.js"></script>
+
+
 </body>
 </html>

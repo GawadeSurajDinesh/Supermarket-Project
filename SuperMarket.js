@@ -69,6 +69,7 @@ function additems() {
     document.getElementById('result').value = totalcost;
 }
 
+const table = document.createElement("table");
 function showitems() {
     
 let cartitems = [
@@ -83,7 +84,6 @@ let cartitems = [
         
     ];
 
-    const table = document.createElement("table");
     table.border = "1";
     table.cellSpacing = "0";
 
@@ -97,5 +97,46 @@ let cartitems = [
         });
         table.appendChild(row);
     })
-    document.getElementById("cart").appendChild(table);
+    document.getElementById("cart").appendChild(table)
 }
+
+function placeOrder() {
+    const cartitems = [
+    ['Product', 'Quantity'],
+    ['Oil', qytoil],
+    ['Chocolate', qytchoco],
+    ['Coconut', qytcoco],
+    ['Buiscuits', qytbuis],
+    ['Ice Cream', qyticecream],
+    ['Rice', qytrice]
+];
+
+localStorage.setItem("cartData", JSON.stringify(cartitems));
+window.location.href = "vieworder.html";
+
+}
+   
+window.addEventListener("DOMContentLoaded", () => {
+    const cartData = JSON.parse(localStorage.getItem("cartData"));
+    if (cartData) {
+        const table = document.createElement('table');
+        table.border = "1";
+        table.cellSpacing = "0";
+
+        cartData.forEach((rowdata, index) => {
+            const row = document.createElement("tr")
+
+            rowdata.forEach(celldata => {
+                const cell = index === 0 ? document.createElement("th") : document.createElement("td");
+                cell.textContent = celldata;
+                row.appendChild(cell);
+            })
+            table.appendChild(row);
+        })
+        const content = document.getElementById("placed")
+        if (content) {
+            content.appendChild(table)
+        }
+        localStorage.removeItem("cartData");
+    }
+})
